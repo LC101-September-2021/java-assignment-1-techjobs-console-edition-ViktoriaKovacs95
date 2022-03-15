@@ -1,3 +1,4 @@
+import com.sun.org.apache.xalan.internal.xsltc.dom.ArrayNodeListIterator;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -5,10 +6,7 @@ import org.apache.commons.csv.CSVRecord;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by LaunchCode
@@ -78,8 +76,11 @@ public class JobData {
         for (HashMap<String, String> row : allJobs) {
 
             String aValue = row.get(column);
+            String aValueCapitalized = aValue.toUpperCase();
+            String valueCapitalized = value.toUpperCase();
 
-            if (aValue.contains(value)) {
+
+            if (aValueCapitalized.contains(valueCapitalized)) {
                 jobs.add(row);
             }
         }
@@ -93,13 +94,27 @@ public class JobData {
      * @param value The search term to look for
      * @return      List of all jobs with at least one field containing the value
      */
-    public static ArrayList<HashMap<String, String>> findByValue(String value) {
+    public static ArrayList<HashMap<String, String>> findByValue(String searchTerm) {
 
         // load data, if not already loaded
         loadData();
+        ArrayList<HashMap<String, String>> allJobs = JobData.findAll();
+        ArrayList<HashMap<String, String>> matchingItems = new ArrayList<>();
 
+        for (HashMap<String, String> row : allJobs){
+            for (Map.Entry<String, String> column : row.entrySet()){
+                System.out.println(column.getValue());
+                if (column.getValue().toUpperCase().contains(searchTerm)){
+                    if(Arrays.asList(matchingItems).contains(row)){
+                        continue;
+                    }
+                    matchingItems.add(row);
+                }
+            }
+        }
+         return matchingItems;
         // TODO - implement this method
-        return null;
+
     }
 
     /**

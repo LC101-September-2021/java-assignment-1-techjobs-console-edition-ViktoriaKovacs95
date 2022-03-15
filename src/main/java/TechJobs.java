@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * Created by LaunchCode
@@ -10,7 +7,7 @@ public class TechJobs {
 
     static Scanner in = new Scanner(System.in);
 
-    public static void main (String[] args) {
+    public static void main(String[] args) {
 
         // Initialize our field map with key/name pairs
         HashMap<String, String> columnChoices = new HashMap<>();
@@ -70,7 +67,7 @@ public class TechJobs {
         }
     }
 
-    // ﻿Returns the key of the selected item from the choices Dictionary
+
     private static String getUserSelection(String menuHeader, HashMap<String, String> choices) {
 
         int choiceIdx = -1;
@@ -112,7 +109,7 @@ public class TechJobs {
                 validChoice = true;
             }
 
-        } while(!validChoice);
+        } while (!validChoice);
 
         return choiceKeys[choiceIdx];
     }
@@ -120,6 +117,43 @@ public class TechJobs {
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
 
-        System.out.println("printJobs is not implemented yet");
+        if (someJobs.size() > 0) {
+
+
+            for (HashMap<String, String> field : someJobs) {
+
+                for (Map.Entry<String, String> data : field.entrySet()) {
+                    System.out.println(data.getKey() + ": " + data.getValue());
+
+                }
+                System.out.println("*****");
+            }
+
+        } else System.out.println("No Results");
     }
+
+//    public static ArrayList<HashMap<String, String>> findByValue(String searchTerm) {
+//
+//        ArrayList<HashMap<String, String>> allJobs = JobData.findAll();
+//        ArrayList<HashMap<String, String>> matchingItems = new ArrayList<>();
+//
+//        for (HashMap<String, String> row : allJobs) {
+//
+//            for (Map.Entry<String, String> column : row.entrySet()) {
+//                if (column.getValue().toUpperCase().contains(searchTerm)) {
+//                    if (Arrays.asList(matchingItems).contains(row)) {
+//                        continue;
+//                    }
+//                    matchingItems.add(row);
+//                }
+//            }
+//
+//        }
+//        return matchingItems;
+//    }
 }
+
+
+
+
+
