@@ -132,25 +132,25 @@ public class TechJobs {
         } else System.out.println("No Results");
     }
 
-    public static ArrayList<HashMap<String, String>> findByValue(String searchTerm) {
-
-        ArrayList<HashMap<String, String>> allJobs = JobData.findAll();
-        ArrayList<HashMap<String, String>> matchingItems = new ArrayList<>();
-
-        for (HashMap<String, String> row : allJobs) {
-
-            for (Map.Entry<String, String> column : row.entrySet()) {
-                if (column.getValue().toUpperCase().contains(searchTerm)) {
-                    if (Arrays.asList(matchingItems).contains(row)) {
-                        continue;
-                    }
-                    matchingItems.add(row);
-                }
-            }
-
-        }
-        return matchingItems;
-    }
+//    public static ArrayList<HashMap<String, String>> findByValue(String searchTerm) {
+//
+//        ArrayList<HashMap<String, String>> allJobs = JobData.findAll();
+//        ArrayList<HashMap<String, String>> matchingItems = new ArrayList<>();
+//
+//        for (HashMap<String, String> row : allJobs) {
+//
+//            for (Map.Entry<String, String> column : row.entrySet()) {
+//                if (column.getValue().toUpperCase().contains(searchTerm)) {
+//                    if (Arrays.asList(matchingItems).contains(row)) {
+//                        continue;
+//                    }
+//                    matchingItems.add(row);
+//                }
+//            }
+//
+//        }
+//        return matchingItems;
+//    }
 }
 
 
